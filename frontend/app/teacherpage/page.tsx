@@ -357,7 +357,7 @@ export default function TeacherPage() {
                                             <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                                                 <Card className="p-4">
                                                     <div className="text-center">
-                                                        <div className="text-2xl font-bold text-white">
+                                                        <div className="text-2xl font-bold text-green-600">
                                                             {detailedResponses.filter(r => r.isCorrect).length}
                                                         </div>
                                                         <div className="text-sm text-gray-500">Correct Answers</div>
