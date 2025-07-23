@@ -13,7 +13,7 @@ class SocketService {
     return SocketService.instance;
   }
 
-  public connect(url: string = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5000'): Socket {
+  public connect(url: string = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://intervue-dogy.onrender.com'): Socket {
     if (this.socket?.connected) {
       return this.socket;
     }
