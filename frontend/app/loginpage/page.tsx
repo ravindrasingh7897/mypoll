@@ -69,7 +69,10 @@ export default function LoginPage() {
               <span className="font-bold">Get Started</span>
             </h1>
             <p className="text-[#454545] text-center">
-              If you’re a student, you’ll be able to submit your answers, participate in live polls, and see how your responses compare with your classmates
+              If you’re a student, you’ll be able to submit your answers, participate in live polls, 
+            </p>
+            <p className="text-[#454545] text-center mt-2">
+              and see how your responses compare with your classmates
             </p>
           </div>
         </div>
