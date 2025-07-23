@@ -39,8 +39,13 @@ export default function StudentPage() {
   const [studentName, setStudentName] = useState("")
   const [pollHistory, setPollHistory] = useState<any[]>([])
   const [showHistory, setShowHistory] = useState(false)
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    setMounted(true)
+    
+    if (typeof window === 'undefined') return
+    
     const storedName = localStorage.getItem('studentName')
     const storedId = localStorage.getItem('studentId')
     
@@ -174,6 +179,19 @@ export default function StudentPage() {
     return `${mins}:${secs.toString().padStart(2, '0')}`
   }
 
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center p-4">
+        <Card className="w-full max-w-md text-center">
+          <CardContent className="pt-6">
+            <div className="animate-spin w-8 h-8 border-4 border-[#7765DA] border-t-transparent rounded-full mx-auto mb-4"></div>
+            <p className="text-[#454545]">Loading...</p>
+          </CardContent>
+        </Card>
+      </div>
+    )
+  }
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center p-4">
@@ -197,8 +215,10 @@ export default function StudentPage() {
                 variant="outline" 
                 size="sm" 
                 onClick={() => {
-                  localStorage.removeItem('studentName')
-                  localStorage.removeItem('studentId')
+                  if (typeof window !== 'undefined') {
+                    localStorage.removeItem('studentName')
+                    localStorage.removeItem('studentId')
+                  }
                   router.push('/loginpage?role=student')
                 }}
                 className="text-xs"
@@ -312,8 +332,10 @@ export default function StudentPage() {
               variant="outline" 
               size="sm" 
               onClick={() => {
-                localStorage.removeItem('studentName')
-                localStorage.removeItem('studentId')
+                if (typeof window !== 'undefined') {
+                  localStorage.removeItem('studentName')
+                  localStorage.removeItem('studentId')
+                }
                 router.push('/loginpage?role=student')
               }}
               className="mr-4 text-xs"

@@ -12,14 +12,21 @@ export default function LoginPage() {
   const searchParams = useSearchParams()
   const [userRole, setUserRole] = useState("")
   const [name, setName] = useState("")
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    const roleFromParams = searchParams.get('role')
-    if (roleFromParams) {
-      setUserRole(roleFromParams)
-      if (roleFromParams === 'teacher') {
-        router.push("/teacherpage")
+    setMounted(true)
+    
+    try {
+      const roleFromParams = searchParams.get('role')
+      if (roleFromParams) {
+        setUserRole(roleFromParams)
+        if (roleFromParams === 'teacher') {
+          router.push("/teacherpage")
+        }
       }
+    } catch (error) {
+      console.error('Error reading search params:', error)
     }
   }, [searchParams, router])
 
@@ -30,12 +37,22 @@ export default function LoginPage() {
     }
     
     if (userRole === "student") {
-      localStorage.setItem('studentName', name.trim())
-      localStorage.setItem('studentId', 'student_' + Math.random().toString(36).substr(2, 9))
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('studentName', name.trim())
+        localStorage.setItem('studentId', 'student_' + Math.random().toString(36).substr(2, 9))
+      }
       router.push("/studentpage")
     } else if (userRole === "teacher") {
       router.push("/teacherpage")
     }
+  }
+
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin w-8 h-8 border-4 border-[#7765DA] border-t-transparent rounded-full"></div>
+      </div>
+    )
   }
 
   return (

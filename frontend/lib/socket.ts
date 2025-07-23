@@ -13,7 +13,7 @@ class SocketService {
     return SocketService.instance;
   }
 
-  public connect(url: string = 'http://localhost:5000'): Socket {
+  public connect(url: string = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5000'): Socket {
     if (this.socket?.connected) {
       return this.socket;
     }
@@ -49,7 +49,6 @@ class SocketService {
     return this.socket;
   }
 
-  // Poll-specific methods
   public joinPoll(pollId: string): void {
     if (this.socket) {
       this.socket.emit('join-poll', pollId);
@@ -62,7 +61,6 @@ class SocketService {
     }
   }
 
-  // Event listeners
   public onNewPoll(callback: (pollData: any) => void): void {
     if (this.socket) {
       this.socket.on('new-poll', callback);
@@ -81,7 +79,6 @@ class SocketService {
     }
   }
 
-  // Remove event listeners
   public offNewPoll(): void {
     if (this.socket) {
       this.socket.off('new-poll');
