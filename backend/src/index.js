@@ -1,0 +1,55 @@
+import dotenv from "dotenv";
+dotenv.config(); 
+
+import mongoose from 'mongoose';
+import { server } from './app.js';
+
+const port = process.env.PORT || 3000;
+
+const connectDB = async () => {
+  try {
+    const mongoURI = process.env.MONGODB_URI ;
+    console.log('Attempting to connect to MongoDB...');
+    
+    await mongoose.connect(mongoURI, {
+      serverSelectionTimeoutMS: 15000, 
+      connectTimeoutMS: 15000,
+      socketTimeoutMS: 15000,
+    });
+    
+    console.log('Connected to MongoDB successfully');
+    return true;
+  } catch (err) {
+    console.error('MongoDB connection failed:', err.message);
+
+    return false;
+  }
+};
+
+const startServer = async () => {
+  const dbConnected = await connectDB();
+  
+  if (!dbConnected) {
+    console.log('Server will not start due to database connection issues');
+    process.exit(1);
+  }
+  
+  server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+    console.log(`Ready to handle polls!`);
+  });
+};
+
+startServer();
+
+mongoose.connection.on('error', err => {
+  console.error('MongoDB connection error:', err);
+});
+
+mongoose.connection.on('disconnected', () => {
+  console.log('MongoDB disconnected. Attempting to reconnect...');
+});
+
+mongoose.connection.on('reconnected', () => {
+  console.log('MongoDB reconnected');
+});
