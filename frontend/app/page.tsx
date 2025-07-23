@@ -22,7 +22,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-4xl">
         <div className="flex justify-center">
-          <Badge className="bg-[#7451b6] text-white">Intervue Poll</Badge>
+          <Badge className="bg-[#7765DA] text-white">Intervue Poll</Badge>
         </div>
         
         <Card className="w-full max-w-2xl mx-auto no-border">
@@ -40,8 +40,8 @@ export default function Home() {
               <Card
                 className={`p-4 border-2 cursor-pointer transition-colors ${
                   selectedRole === "student"
-                    ? "border-[#7451b6] bg-[#f8f6ff]"
-                    : "border-[#d9d9d9] hover:border-[#7451b6]"
+                    ? "border-[#7765DA] bg-[#f8f6ff]"
+                    : "border-[#d9d9d9] hover:border-[#7765DA]"
                 }`}
                 onClick={() => setSelectedRole("student")}
               >
@@ -54,8 +54,8 @@ export default function Home() {
               <Card
                 className={`p-4 border-2 cursor-pointer transition-colors ${
                   selectedRole === "teacher"
-                    ? "border-[#7451b6] bg-[#f8f6ff]"
-                    : "border-[#d9d9d9] hover:border-[#7451b6]"
+                    ? "border-[#7765DA] bg-[#f8f6ff]"
+                    : "border-[#d9d9d9] hover:border-[#7765DA]"
                 }`}
                 onClick={() => setSelectedRole("teacher")}
               >
@@ -68,7 +68,7 @@ export default function Home() {
 
             <div className="flex justify-center">
               <Button
-                className="rounded-full bg-[#7451b6] hover:bg-[#480fb3] text-white border-2 border-[#7451b6] px-6 py-2"
+                className="rounded-full bg-[#7765DA] hover:bg-[#480fb3] text-white border-2 border-[#7765DA] px-6 py-2"
                 onClick={handleGetStarted}
                 disabled={!selectedRole}
               >

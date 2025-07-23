@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Live Polling System | Intervue',
+  description: 'Interactive live polling system for real-time audience engagement and feedback collection',
+  generator: 'Next.js',
 }
 
 export default function RootLayout({
