@@ -49,11 +49,15 @@ export default function StudentPage() {
     const storedName = localStorage.getItem('studentName')
     const storedId = localStorage.getItem('studentId')
     
+    console.log('Checking stored credentials:', { storedName, storedId })
+    
     if (!storedName || !storedId) {
-      router.push('/loginpage?role=student')
+      console.log('No credentials found, redirecting to login')
+      router.replace('/loginpage?role=student')
       return
     }
     
+    console.log('Credentials found, setting up student page')
     setStudentName(storedName)
     setStudentId(storedId)
     
