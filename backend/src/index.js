@@ -2,7 +2,19 @@ import dotenv from "dotenv";
 dotenv.config(); 
 
 import mongoose from 'mongoose';
-import { server } from './app.js';
+
+console.log('Loading modules...');
+
+// Add error handling for module imports
+let server;
+try {
+  const appModule = await import('./app.js');
+  server = appModule.server;
+  console.log('App module loaded successfully');
+} catch (error) {
+  console.error('Error loading app module:', error);
+  process.exit(1);
+}
 
 const port = process.env.PORT || 5000;
 
