@@ -9,32 +9,14 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: [
-      "http://localhost:3001", 
-      "http://localhost:3000",
-      "https://mypoll-beryl.vercel.app"
-    ], 
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-    credentials: true
+    origin: "*",
+    methods: ["GET", "POST"]
   }
 });
 
-app.use(cors({
-  origin: [
-    "http://localhost:3001",
-    "http://localhost:3000", 
-    "https://mypoll-beryl.vercel.app"
-  ],
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-
-// Handle preflight requests
-app.options('*', cors());
 
 app.use((req, res, next) => {
   req.io = io;

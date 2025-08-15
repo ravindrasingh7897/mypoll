@@ -11,3 +11,5 @@ services:
         value: production
       - key: PORT
         value: 5000
+      - key: MONGODB_URI
+        value: mongodb+srv://ravindrasingh4632:rATlWkp5l8FWrag5@cluster0.lacsv8x.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0

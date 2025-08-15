@@ -13,7 +13,7 @@ class SocketService {
     return SocketService.instance;
   }
 
-  public connect(url: string = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://mypoll-2oyw.onrender.com'): Socket {
+  public connect(url: string = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:5000'): Socket {
     if (this.socket?.connected) {
       return this.socket;
     }
