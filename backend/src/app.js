@@ -12,7 +12,7 @@ const io = new Server(server, {
     origin: [
       "http://localhost:3001", 
       "http://localhost:3000",
-      "https://mypoll-umber.vercel.app"
+      "https://mypoll-beryl.vercel.app"
     ], 
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
@@ -24,7 +24,7 @@ app.use(cors({
   origin: [
     "http://localhost:3001",
     "http://localhost:3000", 
-    "https://mypoll-umber.vercel.app"
+    "https://mypoll-beryl.vercel.app"
   ],
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
