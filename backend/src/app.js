@@ -12,9 +12,11 @@ const io = new Server(server, {
     origin: [
       "http://localhost:3001", 
       "http://localhost:3000",
-      "https://intervue-1.vercel.app"
+      "https://mypoll-umber.vercel.app"
     ], 
-    methods: ["GET", "POST"]
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
+    credentials: true
   }
 });
 
@@ -22,12 +24,17 @@ app.use(cors({
   origin: [
     "http://localhost:3001",
     "http://localhost:3000", 
-    "https://intervue-1.vercel.app"
+    "https://mypoll-umber.vercel.app"
   ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
   credentials: true
 }));
 app.use(express.json());
 app.use(morgan('dev'));
+
+// Handle preflight requests
+app.options('*', cors());
 
 app.use((req, res, next) => {
   req.io = io;
