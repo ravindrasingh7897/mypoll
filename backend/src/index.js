@@ -4,7 +4,14 @@ dotenv.config();
 import mongoose from 'mongoose';
 import { server } from './app.js';
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
+
+console.log('Starting server...');
+console.log('Environment:', {
+  NODE_ENV: process.env.NODE_ENV,
+  PORT: port,
+  MONGODB_URI: process.env.MONGODB_URI ? 'Set' : 'Not set'
+});
 
 const connectDB = async () => {
   try {
