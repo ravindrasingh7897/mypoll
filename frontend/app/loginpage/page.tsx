@@ -6,53 +6,38 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
+import { ChevronLeft } from "lucide-react"
 
 export default function LoginPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [userRole, setUserRole] = useState("")
   const [name, setName] = useState("")
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    setMounted(true)
-    
-    try {
-      const roleFromParams = searchParams.get('role')
-      if (roleFromParams) {
-        setUserRole(roleFromParams)
-        if (roleFromParams === 'teacher') {
-          router.push("/teacherpage")
-        }
+    // Get the role from URL parameters if it exists
+    const roleFromParams = searchParams.get('role')
+    if (roleFromParams) {
+      setUserRole(roleFromParams)
+      // If teacher is selected, redirect directly to teacher page
+      if (roleFromParams === 'teacher') {
+        router.push("/teacherpage")
       }
-    } catch (error) {
-      console.error('Error reading search params:', error)
     }
   }, [searchParams, router])
 
   const handleGetStarted = () => {
+    // Check if name is entered
     if (!name.trim()) {
       alert("Please enter your name before continuing")
       return
     }
     
     if (userRole === "student") {
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('studentName', name.trim())
-        localStorage.setItem('studentId', 'student_' + Math.random().toString(36).substr(2, 9))
-      }
       router.push("/studentpage")
     } else if (userRole === "teacher") {
       router.push("/teacherpage")
     }
-  }
-
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin w-8 h-8 border-4 border-[#7765DA] border-t-transparent rounded-full"></div>
-      </div>
-    )
   }
 
   return (
@@ -61,7 +46,7 @@ export default function LoginPage() {
         <div className="mb-2 flex flex-col items-center">
           <div className="flex items-center mb-4 w-full">
             <div className="flex-1 flex justify-center">
-              <Badge className="bg-[#7765DA] text-white">Intervue Poll</Badge>
+              <Badge className="bg-[#7765DA] text-white">My Poll</Badge>
             </div>
           </div>
             <h1 className="text-3xl text-[#000000] mb-2 text-center">
@@ -69,10 +54,7 @@ export default function LoginPage() {
               <span className="font-bold">Get Started</span>
             </h1>
             <p className="text-[#454545] text-center">
-              If you’re a student, you’ll be able to submit your answers, participate in live polls, 
-            </p>
-            <p className="text-[#454545] text-center mt-2">
-              and see how your responses compare with your classmates
+              If you’re a student, you’ll be able to submit your answers, participate in live polls, and see how your responses compare with your classmates
             </p>
           </div>
         </div>

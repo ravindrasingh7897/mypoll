@@ -252,7 +252,7 @@ export default function TeacherPage() {
                         <Button variant="ghost" size="sm" onClick={() => router.push("/")}>
                             <ChevronLeft className="w-4 h-4" />
                         </Button>
-                        <Badge className="bg-[#7765DA] text-white">Intervue Poll</Badge>
+                        <Badge className="bg-[#7765DA] text-white">Live Poll</Badge>
                     </div>
                     <h1 className="text-3xl font-bold text-[#000000] mb-2">
                         {showDetailedResponses ? "Detailed Responses" : "Let's Get Started"}

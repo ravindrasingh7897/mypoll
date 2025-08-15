@@ -22,7 +22,7 @@ export default function Home() {
     <div className="min-h-screen flex flex-col items-center justify-center p-4">
       <div className="w-full max-w-4xl">
         <div className="flex justify-center">
-          <Badge className="bg-[#7765DA] text-white">Intervue Poll</Badge>
+          <Badge className="bg-[#7765DA] text-white">Live Poll</Badge>
         </div>
         
         <Card className="w-full max-w-2xl mx-auto no-border">
