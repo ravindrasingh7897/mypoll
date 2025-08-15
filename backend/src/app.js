@@ -9,12 +9,22 @@ const app = express();
 const server = createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "*",
+    origin: [
+      "http://localhost:3000",
+      "http://localhost:3001", 
+      "https://mypoll-beryl.vercel.app"
+    ],
     methods: ["GET", "POST"]
   }
 });
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://mypoll-beryl.vercel.app"
+  ]
+}));
 app.use(express.json());
 app.use(morgan('dev'));
 
