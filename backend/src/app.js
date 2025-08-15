@@ -12,7 +12,8 @@ const io = new Server(server, {
     origin: [
       "http://localhost:3000",
       "http://localhost:3001", 
-      "https://mypoll-beryl.vercel.app"
+      "https://mypoll-beryl.vercel.app",
+      "https://mypoll-git-main-rss-projects-446bee74.vercel.app"
     ],
     methods: ["GET", "POST"]
   }
@@ -22,7 +23,8 @@ app.use(cors({
   origin: [
     "http://localhost:3000",
     "http://localhost:3001",
-    "https://mypoll-beryl.vercel.app"
+    "https://mypoll-beryl.vercel.app",
+    "https://mypoll-git-main-rss-projects-446bee74.vercel.app"
   ]
 }));
 app.use(express.json());
