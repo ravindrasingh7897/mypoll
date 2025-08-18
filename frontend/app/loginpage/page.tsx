@@ -15,11 +15,9 @@ export default function LoginPage() {
   const [name, setName] = useState("")
 
   useEffect(() => {
-    // Get the role from URL parameters if it exists
     const roleFromParams = searchParams.get('role')
     if (roleFromParams) {
       setUserRole(roleFromParams)
-      // If teacher is selected, redirect directly to teacher page
       if (roleFromParams === 'teacher') {
         router.push("/teacherpage")
       }
@@ -27,14 +25,12 @@ export default function LoginPage() {
   }, [searchParams, router])
 
   const handleGetStarted = () => {
-    // Check if name is entered
     if (!name.trim()) {
       alert("Please enter your name before continuing")
       return
     }
     
     if (userRole === "student") {
-      // Store student information in localStorage
       const studentId = `student_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
       localStorage.setItem('studentName', name.trim())
       localStorage.setItem('studentId', studentId)

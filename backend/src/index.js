@@ -5,7 +5,6 @@ import mongoose from 'mongoose';
 
 console.log('Loading modules...');
 
-// Add error handling for module imports
 let server;
 try {
   const appModule = await import('./app.js');

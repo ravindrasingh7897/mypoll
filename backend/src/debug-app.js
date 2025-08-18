@@ -12,14 +12,12 @@ app.use(express.json());
 
 console.log('Step 3: Middleware added');
 
-// Add a simple route
 app.get('/', (req, res) => {
   res.json({ message: 'Test successful' });
 });
 
 console.log('Step 4: Basic route added');
 
-// Now try to import the polls routes
 try {
   console.log('Step 5: Attempting to import polls routes...');
   const pollRoutes = await import('./routes/polls.js');
